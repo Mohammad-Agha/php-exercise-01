@@ -111,6 +111,10 @@ html, body {
     border-radius: 0.5rem;
 }
 
+.btn:hover {
+    background-color: #62cf67;
+}
+
 .btn:focus {
     outline: none;
 }
