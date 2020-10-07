@@ -96,10 +96,7 @@
             $securityNumber = filterData($_POST['securityNumber']);
         }
     }
-
-
-
-
+    
     function filterData($data) {
         $data = trim($data);
         $data = htmlspecialchars($data);
@@ -125,35 +122,43 @@
                 <div class="form-group">
                     
                     <p class="error"><?php echo $fullNameError ?></p>
-                    <input type="text" class="form-control<?php echo $fullNameErrorClass ?>" name="fullName" placeholder="Full Name">
+                    <input value="<?php echo $fullName; ?>"
+                     type="text" class="form-control<?php echo $fullNameErrorClass ?>" name="fullName" placeholder="Full Name">
                 </div>
                 <div class="form-group">
                     <p class="error"><?php echo $usernameError ?></p>
-                    <input type="text" class="form-control<?php echo $usernameErrorClass ?>" name="username" placeholder="Username">
+                    <input value="<?php echo $username; ?>"
+                     type="text" class="form-control<?php echo $usernameErrorClass ?>" name="username" placeholder="Username">
                 </div>
                 <div class="form-group">
                     <p class="error"><?php echo $passwordError ?></p>
-                    <input type="password" class="form-control<?php echo $passwordErrorClass ?>" name="password" placeholder="Password">
+                    <input value="<?php echo $password; ?>"
+                     type="password" class="form-control<?php echo $passwordErrorClass ?>" name="password" placeholder="Password">
                 </div>
                 <div class="form-group">
                     <p class="error"><?php echo $confirmPasswordError ?></p>
-                    <input type="password" class="form-control<?php echo $confirmPasswordErrorClass ?>" name="confirmPassword" placeholder="Confirm Password">
+                    <input value="<?php echo $confirmPassword; ?>"
+                     type="password" class="form-control<?php echo $confirmPasswordErrorClass ?>" name="confirmPassword" placeholder="Confirm Password">
                 </div>
                 <div class="form-group">
                     <p class="error"><?php echo $emailError ?></p>
-                    <input type="email" class="form-control<?php echo $emailErrorClass ?>" name="email" placeholder="Email">
+                    <input value="<?php echo $email; ?>"
+                     type="email" class="form-control<?php echo $emailErrorClass ?>" name="email" placeholder="Email">
                 </div>
                 <div class="form-group">
                     <p class="error"><?php echo $phoneError ?></p>
-                    <input type="tel" class="form-control<?php echo $phoneErrorClass ?>" name="phone" placeholder="Phone">
+                    <input value="<?php echo $phone; ?>"
+                     type="tel" class="form-control<?php echo $phoneErrorClass ?>" name="phone" placeholder="Phone">
                 </div>
                 <div class="form-group">
                     <p class="error"><?php echo $dateOfBirthError ?></p>
-                    <input type="text" class="form-control<?php echo $dateOfBirthErrorClass ?>" name="dateOfBirth" placeholder="dd / mm / yyyy">
+                    <input value="<?php echo $dateOfBirth; ?>"
+                     type="text" class="form-control<?php echo $dateOfBirthErrorClass ?>" name="dateOfBirth" placeholder="dd / mm / yyyy">
                 </div>
                 <div class="form-group">
                     <p class="error"><?php echo $securityNumberError ?></p>
-                    <input type="text" class="form-control<?php echo $securityNumberErrorClass ?>" name="securityNumber" placeholder="Social Security Number">
+                    <input value="<?php echo $securityNumber; ?>"
+                     type="text" class="form-control<?php echo $securityNumberErrorClass ?>" name="securityNumber" placeholder="Social Security Number">
                 </div>
                 <div class="form-group">
                     <button type="submit" class="btn">Register</button>
