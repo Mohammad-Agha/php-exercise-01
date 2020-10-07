@@ -9,6 +9,7 @@
 
 html, body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--greenBackground);
 }
 
 /* Global variables */
@@ -18,4 +19,63 @@ html, body {
     --greenContainer: #699a4b;
     --greenButton: #77b852;
     --fontColor: #daebc9;
+    --marginBottom: 1.3rem;
+}
+
+.wrapper {
+    width: 50%;
+    float: left;
+    display: flex;
+    justify-content: center;
+    padding: 30px 0;
+}
+
+.header {
+    color: var(--fontColor);
+    margin-bottom: var(--marginBottom);
+    text-align: center;
+}
+
+.form-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1.5rem;
+    background-color: var(--greenContainer);
+    border-radius: 0.5rem;
+    box-shadow: 10px 10px 10px var(--greenContainer);
+}
+
+.form-group, .form-control {
+    width: 100%;
+}
+
+.form-group {
+    margin: 0.5rem;
+}
+
+.form-control {
+    background-color: transparent;
+    font-size: 1.1rem;
+    border: none;
+    border: 1px solid var(--fontColor);
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+}
+
+.form-control {
+    color: var(--fontColor);
+}
+
+.btn {
+    font-size: 1.1rem;
+    padding: 0.5rem;
+    display: block;
+    width: 100%;
+    color: var(--fontColor);
+    background-color: var(--greenButton);
+    cursor: pointer;
+    border: none;
+    border-radius: 0.5rem;
 }

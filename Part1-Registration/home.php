@@ -7,9 +7,9 @@
     <title>Registration Page | Login Page</title>
 </head>
 <body>
-    <div class="registration-div">
-        <div class="registration-container">
-            <h1 class="registration-header">Registration Form</h1>
+    <div class="wrapper">
+        <div class="container">
+            <h1 class="header">Registration Form</h1>
             <form method="post" action="" class="form-wrapper">
 
                 <div class="form-group">
@@ -34,7 +34,7 @@
                     <input type="text" class="form-control" name="dateOfBirth" placeholder="dd / mm / yyyy">
                 </div>
                 <div class="form-group">
-                    <input type="number" class="form-control" name="securityNumber" placeholder="Social Security Number">
+                    <input type="text" class="form-control" name="securityNumber" placeholder="Social Security Number">
                 </div>
                 <div class="form-group">
                     <button type="submit" class="btn">Register</button>
@@ -44,9 +44,9 @@
         </div>
     </div>
 
-    <div class="login-div">
-        <div class="login-container">
-            <h1 class="login-header">Login Form</h1>
+    <div class="wrapper">
+        <div class="container">
+            <h1 class="header">Login Form</h1>
             <form method="post" action="" class="form-wrapper">
 
                 <div class="form-group">
