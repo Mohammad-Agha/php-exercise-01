@@ -6,7 +6,6 @@
 
     $fullNameErrorClass = $usernameErrorClass = $passwordErrorClass = $confirmPasswordErrorClass = $emailErrorClass = $phoneErrorClass = $dateOfBirthErrorClass = $securityNumberErrorClass = "";
 
-
     if(!isset($_SESSION['id'])) {
         $_SESSION['id'] = 1;
     }
@@ -137,7 +136,6 @@
             $_SESSION['id']++;
             array_push($_SESSION['users'], $user); 
         }
-
     }
 
     
@@ -160,49 +158,49 @@
     <div class="wrapper">
         <div class="container">
             <h1 class="header">Registration Form</h1>
-            <h2 class="header"><?php if($validate) { echo "User $username was registered"; }  ?></h2>
+            <h2 class="header"><?php if($_SERVER['REQUEST_METHOD'] == "POST") { if($validate) { echo "User $username was registered"; } }  ?></h2>
             <form method="post" action=
             "<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" class="form-wrapper">
 
                 <div class="form-group">
                     
                     <p class="error"><?php echo $fullNameError ?></p>
-                    <input value="<?php if(!$validate) echo $fullName; else echo ""; ?>"
+                    <input value="<?php if($_SERVER['REQUEST_METHOD'] == "POST") { if(!$validate) echo $fullName; else echo ""; } ?>"
                      type="text" class="form-control<?php echo $fullNameErrorClass ?>" name="fullName" placeholder="Full Name">
                 </div>
                 <div class="form-group">
                     <p class="error"><?php echo $usernameError ?></p>
-                    <input value="<?php if(!$validate) echo $username; else echo ""; ?>"
+                    <input value="<?php if($_SERVER['REQUEST_METHOD'] == "POST") { if(!$validate) echo $username; else echo ""; } ?>"
                      type="text" class="form-control<?php echo $usernameErrorClass ?>" name="username" placeholder="Username">
                 </div>
                 <div class="form-group">
                     <p class="error"><?php echo $passwordError ?></p>
-                    <input value="<?php if(!$validate) echo $password; else echo ""; ?>"
+                    <input value="<?php if($_SERVER['REQUEST_METHOD'] == "POST") { if(!$validate) echo $password; else echo ""; } ?>"
                      type="password" class="form-control<?php echo $passwordErrorClass ?>" name="password" placeholder="Password">
                 </div>
                 <div class="form-group">
                     <p class="error"><?php echo $confirmPasswordError ?></p>
-                    <input value="<?php if(!$validate) echo $confirmPassword; else echo ""; ?>"
+                    <input value="<?php if($_SERVER['REQUEST_METHOD'] == "POST") { if(!$validate) echo $confirmPassword; else echo ""; } ?>"
                      type="password" class="form-control<?php echo $confirmPasswordErrorClass ?>" name="confirmPassword" placeholder="Confirm Password">
                 </div>
                 <div class="form-group">
                     <p class="error"><?php echo $emailError ?></p>
-                    <input value="<?php if(!$validate) echo $email; else echo ""; ?>"
+                    <input value="<?php if($_SERVER['REQUEST_METHOD'] == "POST") { if(!$validate) echo $email; else echo ""; } ?>"
                      type="email" class="form-control<?php echo $emailErrorClass ?>" name="email" placeholder="Email">
                 </div>
                 <div class="form-group">
                     <p class="error"><?php echo $phoneError ?></p>
-                    <input value="<?php if(!$validate) echo $phone; else echo ""; ?>"
+                    <input value="<?php if($_SERVER['REQUEST_METHOD'] == "POST") { if(!$validate) echo $phone; else echo ""; } ?>"
                      type="tel" class="form-control<?php echo $phoneErrorClass ?>" name="phone" placeholder="Phone">
                 </div>
                 <div class="form-group">
                     <p class="error"><?php echo $dateOfBirthError ?></p>
-                    <input value="<?php if(!$validate) echo $dateOfBirth; else echo ""; ?>"
+                    <input value="<?php if($_SERVER['REQUEST_METHOD'] == "POST") { if(!$validate) echo $dateOfBirth; else echo ""; } ?>"
                      type="text" class="form-control<?php echo $dateOfBirthErrorClass ?>" name="dateOfBirth" placeholder="dd / mm / yyyy">
                 </div>
                 <div class="form-group">
                     <p class="error"><?php echo $securityNumberError ?></p>
-                    <input value="<?php if(!$validate) echo $securityNumber; else echo ""; ?>"
+                    <input value="<?php if($_SERVER['REQUEST_METHOD'] == "POST") { if(!$validate) echo $securityNumber; else echo ""; } ?>"
                      type="text" class="form-control<?php echo $securityNumberErrorClass ?>" name="securityNumber" placeholder="Social Security Number">
                 </div>
                 <div class="form-group">
