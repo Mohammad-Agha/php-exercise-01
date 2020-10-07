@@ -22,6 +22,11 @@
         $_SESSION['users'] = array();
     }
 
+    if(isset($_SESSION['goneBack'])) {
+        $loginText = $_SESSION['goneBack'];
+        unset($_SESSION['goneBack']);
+    }
+
     if($_SERVER["REQUEST_METHOD"] == "POST") {
         if(isset($_POST['register'])) {
             $validate = true;
@@ -180,6 +185,7 @@
                 }
                 if($usernameCheck && $passwordCheck) {
                     $_SESSION['welcome'] = $usernameLogin;
+                    $_SESSION['token'] = 123123;
                     header('Location: safe.php');
                 }
                 if($usernameCheck && !$passwordCheck) {
@@ -271,7 +277,7 @@
     <div class="wrapper">
         <div class="container">
             <h1 class="header">Login Form</h1>
-            <h2 class="header"><?php if($_SERVER['REQUEST_METHOD'] == "POST") echo $loginText; ?></h2>
+            <h2 class="header"><?php if($_SERVER['REQUEST_METHOD'] == "POST" || isset($loginText)) echo $loginText; ?></h2>
             <form method="post" action="" class="form-wrapper">
                 <div class="form-group">
                     <p class="error"><?php echo $usernameLoginError; ?></p>
