@@ -78,6 +78,7 @@ html, body {
 }
 
 .form-control:focus {
+    outline: none;
     animation-name: scale;
     animation-duration: 1s;
     animation-timing-function: ease-in;
@@ -103,4 +104,8 @@ html, body {
     cursor: pointer;
     border: none;
     border-radius: 0.5rem;
+}
+
+.btn:focus {
+    outline: none;
 }
