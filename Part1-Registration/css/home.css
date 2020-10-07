@@ -22,6 +22,11 @@ html, body {
     --marginBottom: 1.3rem;
 }
 
+::placeholder { 
+    color: var(--fontColor);
+    opacity: 1;
+  }
+
 .wrapper {
     width: 50%;
     float: left;
