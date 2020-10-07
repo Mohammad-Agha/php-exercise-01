@@ -1,16 +1,42 @@
 <?php
     $fullName = $username = $password = $confirmPassword = $email = $phone = $dateOfBirth = $securityNumber = "";
 
+    $fullNameError = $usernameError = $passwordError = $confirmPasswordError = $emailError = $phoneError = $dateOfBirthError = $securityNumberError = "";
+
     if($_SERVER["REQUEST_METHOD"] == "POST") {
-        $fullName = filterData($_POST['fullName']);
-        $username = filterData($_POST['username']);
-        $password = filterData($_POST['password']);
-        $confirmPassword = filterData($_POST['confirmPassword']);
-        $email = filterData($_POST['email']);
-        $phone = filterData($_POST['phone']);
-        $dateOfBirth = filterData($_POST['dateOfBirth']);
-        $securityNumber = filterData($_POST['securityNumber']);
+        (empty($_POST['fullName']))
+            ? ($fullNameError = "Full name is required")
+            : ($fullName = filterData($_POST['fullName']));
+            (empty($_POST['username']))
+            ? ($usernameError = "Username is required")
+            : ($username = filterData($_POST['username']));
+
+            (empty($_POST['password']))
+            ? ($passwordError = "Password is required")
+            : ($password = filterData($_POST['password']));
+
+            (empty($_POST['confirmPassword']))
+            ? ($confirmPasswordError = "Confirm password is required")
+            : ($confirmPassword = filterData($_POST['confirmPassword']));
+
+            (empty($_POST['email']))
+            ? ($emailError = "Email is required")
+            : ($email = filterData($_POST['email']));
+
+            (empty($_POST['phone']))
+            ? ($phoneError = "Phone is required")
+            : ($phone = filterData($_POST['phone']));
+
+            (empty($_POST['dateOfBirth']))
+            ? ($dateOfBirthError = "Date of birth is required")
+            : ($dateOfBirth = filterData($_POST['dateOfBirth']));
+
+            (empty($_POST['securityNumber']))
+            ? ($securityNumberError = "Social security number is required")
+            : ($securityNumber = filterData($_POST['securityNumber']));
     }
+
+
 
 
     function filterData($data) {
@@ -37,28 +63,35 @@
 
                 <div class="form-group">
                     
-                    <p class="error"><?php  ?></p>
+                    <p class="error"><?php echo $fullNameError ?></p>
                     <input type="text" class="form-control" name="fullName" placeholder="Full Name">
                 </div>
                 <div class="form-group">
+                    <p class="error"><?php echo $usernameError ?></p>
                     <input type="text" class="form-control" name="username" placeholder="Username">
                 </div>
                 <div class="form-group">
+                    <p class="error"><?php echo $passwordError ?></p>
                     <input type="password" class="form-control" name="password" placeholder="Password">
                 </div>
                 <div class="form-group">
+                    <p class="error"><?php echo $confirmPasswordError ?></p>
                     <input type="password" class="form-control" name="confirmPassword" placeholder="Confirm Password">
                 </div>
                 <div class="form-group">
+                    <p class="error"><?php echo $emailError ?></p>
                     <input type="email" class="form-control" name="email" placeholder="Email">
                 </div>
                 <div class="form-group">
+                    <p class="error"><?php echo $phoneError ?></p>
                     <input type="tel" class="form-control" name="phone" placeholder="Phone">
                 </div>
                 <div class="form-group">
+                    <p class="error"><?php echo $dateOfBirthError ?></p>
                     <input type="text" class="form-control" name="dateOfBirth" placeholder="dd / mm / yyyy">
                 </div>
                 <div class="form-group">
+                    <p class="error"><?php echo $securityNumberError ?></p>
                     <input type="text" class="form-control" name="securityNumber" placeholder="Social Security Number">
                 </div>
                 <div class="form-group">
