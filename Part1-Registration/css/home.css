@@ -64,6 +64,13 @@ html, body {
     border-radius: 0.5rem;
 }
 
+.error {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #a1404d;
+
+}
+
 .form-control {
     color: var(--fontColor);
 }

@@ -1,3 +1,25 @@
+<?php
+    $fullName = $username = $password = $confirmPassword = $email = $phone = $dateOfBirth = $securityNumber = "";
+
+    if($_SERVER["REQUEST_METHOD"] == "POST") {
+        $fullName = filterData($_POST['fullName']);
+        $username = filterData($_POST['username']);
+        $password = filterData($_POST['password']);
+        $confirmPassword = filterData($_POST['confirmPassword']);
+        $email = filterData($_POST['email']);
+        $phone = filterData($_POST['phone']);
+        $dateOfBirth = filterData($_POST['dateOfBirth']);
+        $securityNumber = filterData($_POST['securityNumber']);
+    }
+
+
+    function filterData($data) {
+        $data = trim($data);
+        $data = htmlspecialchars($data);
+        return $data;
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,9 +32,12 @@
     <div class="wrapper">
         <div class="container">
             <h1 class="header">Registration Form</h1>
-            <form method="post" action="" class="form-wrapper">
+            <form method="post" action=
+            "<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" class="form-wrapper">
 
                 <div class="form-group">
+                    
+                    <p class="error"><?php  ?></p>
                     <input type="text" class="form-control" name="fullName" placeholder="Full Name">
                 </div>
                 <div class="form-group">
