@@ -4,36 +4,61 @@
     $fullNameError = $usernameError = $passwordError = $confirmPasswordError = $emailError = $phoneError = $dateOfBirthError = $securityNumberError = "";
 
     if($_SERVER["REQUEST_METHOD"] == "POST") {
-        (empty($_POST['fullName']))
-            ? ($fullNameError = "Full name is required")
-            : ($fullName = filterData($_POST['fullName']));
-            (empty($_POST['username']))
-            ? ($usernameError = "Username is required")
-            : ($username = filterData($_POST['username']));
+        if(empty($_POST['fullName'])) {
+            $fullNameError = "Full name is required";
+        }
+        else {
+            $fullName = filterData($_POST['fullName']);
+        }
 
-            (empty($_POST['password']))
-            ? ($passwordError = "Password is required")
-            : ($password = filterData($_POST['password']));
+        if(empty($_POST['username'])) {
+            $usernameError = "Username is required";
+        }
+        else {
+            $username = filterData($_POST['username']);
+        }
 
-            (empty($_POST['confirmPassword']))
-            ? ($confirmPasswordError = "Confirm password is required")
-            : ($confirmPassword = filterData($_POST['confirmPassword']));
+        if(empty($_POST['password'])) {
+            $passwordError = "Password is required";
+        }
+        else {
+            $password = filterData($_POST['password']);
+        }
 
-            (empty($_POST['email']))
-            ? ($emailError = "Email is required")
-            : ($email = filterData($_POST['email']));
+        if(empty($_POST['confirmPassword'])) {
+            $confirmPasswordError = "Confirm password is required";
+        }
+        else {
+            $confirmPassword = filterData($_POST['confirmPassword']);
+        }
 
-            (empty($_POST['phone']))
-            ? ($phoneError = "Phone is required")
-            : ($phone = filterData($_POST['phone']));
+        if(empty($_POST['email'])) {
+            $emailError = "Email is required";
+        }
+        else {
+            $email = filterData($_POST['email']);
+        }
 
-            (empty($_POST['dateOfBirth']))
-            ? ($dateOfBirthError = "Date of birth is required")
-            : ($dateOfBirth = filterData($_POST['dateOfBirth']));
+        if(empty($_POST['phone'])) {
+            $phoneError = "Phone is required";
+        }
+        else {
+            $phone = filterData($_POST['phone']);
+        }
 
-            (empty($_POST['securityNumber']))
-            ? ($securityNumberError = "Social security number is required")
-            : ($securityNumber = filterData($_POST['securityNumber']));
+        if(empty($_POST['dateOfBirth'])) {
+            $dateOfBirthError = "Date of birth is required";
+        }
+        else {
+            $dateOfBirth = filterData($_POST['dateOfBirth']);
+        }
+
+        if(empty($_POST['securityNumber'])) {
+            $securityNumberError = "Social security number is required";
+        }
+        else {
+            $securityNumber = filterData($_POST['securityNumber']);
+        }
     }
 
 
