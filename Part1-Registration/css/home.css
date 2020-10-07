@@ -58,7 +58,6 @@ html, body {
 .form-control {
     background-color: transparent;
     font-size: 1.1rem;
-    border: none;
     border: 1px solid var(--fontColor);
     padding: 0.5rem;
     border-radius: 0.5rem;
@@ -68,7 +67,10 @@ html, body {
     font-size: 1.1rem;
     font-weight: bold;
     color: #a1404d;
+}
 
+.form-control__error {
+    border: 3px solid #a1404d;
 }
 
 .form-control {

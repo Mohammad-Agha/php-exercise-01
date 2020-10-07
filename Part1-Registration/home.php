@@ -3,9 +3,12 @@
 
     $fullNameError = $usernameError = $passwordError = $confirmPasswordError = $emailError = $phoneError = $dateOfBirthError = $securityNumberError = "";
 
+    $fullNameErrorClass = $usernameErrorClass = $passwordErrorClass = $confirmPasswordErrorClass = $emailErrorClass = $phoneErrorClass = $dateOfBirthErrorClass = $securityNumberErrorClass = "";
+
     if($_SERVER["REQUEST_METHOD"] == "POST") {
         if(empty($_POST['fullName'])) {
             $fullNameError = "Full name is required";
+            $fullNameErrorClass = " form-control__error";
         }
         else {
             $fullName = filterData($_POST['fullName']);
@@ -13,6 +16,7 @@
 
         if(empty($_POST['username'])) {
             $usernameError = "Username is required";
+            $usernameErrorClass = " form-control__error";
         }
         else {
             $username = filterData($_POST['username']);
@@ -20,6 +24,7 @@
 
         if(empty($_POST['password'])) {
             $passwordError = "Password is required";
+            $passwordErrorClass = " form-control__error";
         }
         else {
             $password = filterData($_POST['password']);
@@ -27,6 +32,7 @@
 
         if(empty($_POST['confirmPassword'])) {
             $confirmPasswordError = "Confirm password is required";
+            $confirmPasswordErrorClass = " form-control__error";
         }
         else {
             $confirmPassword = filterData($_POST['confirmPassword']);
@@ -34,6 +40,7 @@
 
         if(empty($_POST['email'])) {
             $emailError = "Email is required";
+            $emailErrorClass = " form-control__error";
         }
         else {
             $email = filterData($_POST['email']);
@@ -41,6 +48,7 @@
 
         if(empty($_POST['phone'])) {
             $phoneError = "Phone is required";
+            $phoneErrorClass = " form-control__error";
         }
         else {
             $phone = filterData($_POST['phone']);
@@ -48,6 +56,7 @@
 
         if(empty($_POST['dateOfBirth'])) {
             $dateOfBirthError = "Date of birth is required";
+            $dateOfBirthErrorClass = " form-control__error";
         }
         else {
             $dateOfBirth = filterData($_POST['dateOfBirth']);
@@ -55,6 +64,7 @@
 
         if(empty($_POST['securityNumber'])) {
             $securityNumberError = "Social security number is required";
+            $securityNumberErrorClass = " form-control__error";
         }
         else {
             $securityNumber = filterData($_POST['securityNumber']);
@@ -89,35 +99,35 @@
                 <div class="form-group">
                     
                     <p class="error"><?php echo $fullNameError ?></p>
-                    <input type="text" class="form-control" name="fullName" placeholder="Full Name">
+                    <input type="text" class="form-control<?php echo $fullNameErrorClass ?>" name="fullName" placeholder="Full Name">
                 </div>
                 <div class="form-group">
                     <p class="error"><?php echo $usernameError ?></p>
-                    <input type="text" class="form-control" name="username" placeholder="Username">
+                    <input type="text" class="form-control<?php echo $usernameErrorClass ?>" name="username" placeholder="Username">
                 </div>
                 <div class="form-group">
                     <p class="error"><?php echo $passwordError ?></p>
-                    <input type="password" class="form-control" name="password" placeholder="Password">
+                    <input type="password" class="form-control<?php echo $passwordErrorClass ?>" name="password" placeholder="Password">
                 </div>
                 <div class="form-group">
                     <p class="error"><?php echo $confirmPasswordError ?></p>
-                    <input type="password" class="form-control" name="confirmPassword" placeholder="Confirm Password">
+                    <input type="password" class="form-control<?php echo $confirmPasswordErrorClass ?>" name="confirmPassword" placeholder="Confirm Password">
                 </div>
                 <div class="form-group">
                     <p class="error"><?php echo $emailError ?></p>
-                    <input type="email" class="form-control" name="email" placeholder="Email">
+                    <input type="email" class="form-control<?php echo $emailErrorClass ?>" name="email" placeholder="Email">
                 </div>
                 <div class="form-group">
                     <p class="error"><?php echo $phoneError ?></p>
-                    <input type="tel" class="form-control" name="phone" placeholder="Phone">
+                    <input type="tel" class="form-control<?php echo $phoneErrorClass ?>" name="phone" placeholder="Phone">
                 </div>
                 <div class="form-group">
                     <p class="error"><?php echo $dateOfBirthError ?></p>
-                    <input type="text" class="form-control" name="dateOfBirth" placeholder="dd / mm / yyyy">
+                    <input type="text" class="form-control<?php echo $dateOfBirthErrorClass ?>" name="dateOfBirth" placeholder="dd / mm / yyyy">
                 </div>
                 <div class="form-group">
                     <p class="error"><?php echo $securityNumberError ?></p>
-                    <input type="text" class="form-control" name="securityNumber" placeholder="Social Security Number">
+                    <input type="text" class="form-control<?php echo $securityNumberErrorClass ?>" name="securityNumber" placeholder="Social Security Number">
                 </div>
                 <div class="form-group">
                     <button type="submit" class="btn">Register</button>
