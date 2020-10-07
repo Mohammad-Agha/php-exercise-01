@@ -209,6 +209,9 @@
                     <button type="submit" class="btn">Register</button>
                 </div>
 
+                <div class="form-group">
+                    <button type="reset" class="btn">Reset</button>
+                </div>
             </form>
         </div>
     </div>
