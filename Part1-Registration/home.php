@@ -5,18 +5,27 @@
 
     $fullNameErrorClass = $usernameErrorClass = $passwordErrorClass = $confirmPasswordErrorClass = $emailErrorClass = $phoneErrorClass = $dateOfBirthErrorClass = $securityNumberErrorClass = "";
 
+    $validate = true;
+
     if($_SERVER["REQUEST_METHOD"] == "POST") {
         if(empty($_POST['fullName'])) {
             $fullNameError = "Full name is required";
             $fullNameErrorClass = " form-control__error";
+            $validate = false;
         }
         else {
             $fullName = filterData($_POST['fullName']);
+            if (!preg_match("/^[a-zA-Z-' ]*$/",$fullName)) {
+                $fullNameError = "Incorrect name";
+                $fullNameErrorClass = " form-control__error";
+                $validate = false;
+            }
         }
 
         if(empty($_POST['username'])) {
             $usernameError = "Username is required";
             $usernameErrorClass = " form-control__error";
+            $validate = false;
         }
         else {
             $username = filterData($_POST['username']);
@@ -25,6 +34,7 @@
         if(empty($_POST['password'])) {
             $passwordError = "Password is required";
             $passwordErrorClass = " form-control__error";
+            $validate = false;
         }
         else {
             $password = filterData($_POST['password']);
@@ -33,22 +43,36 @@
         if(empty($_POST['confirmPassword'])) {
             $confirmPasswordError = "Confirm password is required";
             $confirmPasswordErrorClass = " form-control__error";
+            $validate = false;
         }
         else {
             $confirmPassword = filterData($_POST['confirmPassword']);
+            if($password != $confirmPassword) {
+                $passwordError = "Password doesn't match";
+                $passwordErrorClass = " form-control__error";
+                $confirmPasswordErrorClass = " form-control__error";
+                $validate = false;
+            }
         }
 
         if(empty($_POST['email'])) {
             $emailError = "Email is required";
             $emailErrorClass = " form-control__error";
+            $validate = false;
         }
         else {
             $email = filterData($_POST['email']);
+            if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                $emailError = "Invalid email format";
+                $emailErrorClass = " form-control__error";
+                $validate = false;
+            }
         }
 
         if(empty($_POST['phone'])) {
             $phoneError = "Phone is required";
             $phoneErrorClass = " form-control__error";
+            $validate = false;
         }
         else {
             $phone = filterData($_POST['phone']);
@@ -57,6 +81,7 @@
         if(empty($_POST['dateOfBirth'])) {
             $dateOfBirthError = "Date of birth is required";
             $dateOfBirthErrorClass = " form-control__error";
+            $validate = false;
         }
         else {
             $dateOfBirth = filterData($_POST['dateOfBirth']);
@@ -65,6 +90,7 @@
         if(empty($_POST['securityNumber'])) {
             $securityNumberError = "Social security number is required";
             $securityNumberErrorClass = " form-control__error";
+            $validate = false;
         }
         else {
             $securityNumber = filterData($_POST['securityNumber']);
