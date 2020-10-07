@@ -1,13 +1,22 @@
 <?php
+    session_start();
     $fullName = $username = $password = $confirmPassword = $email = $phone = $dateOfBirth = $securityNumber = "";
 
     $fullNameError = $usernameError = $passwordError = $confirmPasswordError = $emailError = $phoneError = $dateOfBirthError = $securityNumberError = "";
 
     $fullNameErrorClass = $usernameErrorClass = $passwordErrorClass = $confirmPasswordErrorClass = $emailErrorClass = $phoneErrorClass = $dateOfBirthErrorClass = $securityNumberErrorClass = "";
 
-    $validate = true;
+
+    if(!isset($_SESSION['id'])) {
+        $_SESSION['id'] = 1;
+    }
+
+    if(!isset($_SESSION['users'])) {
+        $_SESSION['users'] = array();
+    }
 
     if($_SERVER["REQUEST_METHOD"] == "POST") {
+        $validate = true;
         if(empty($_POST['fullName'])) {
             $fullNameError = "Full name is required";
             $fullNameErrorClass = " form-control__error";
@@ -29,6 +38,15 @@
         }
         else {
             $username = filterData($_POST['username']);
+            if(isset($_SESSION['users'])) {
+                foreach($_SESSION['users'] as $user) {
+                    if($user['username'] == $username) {
+                        $validate = false;
+                        $usernameError = "Username already exists";
+                        $usernameErrorClass = " form-control__error";
+                    }
+                }    
+            }
         }
 
         if(empty($_POST['password'])) {
@@ -67,6 +85,15 @@
                 $emailErrorClass = " form-control__error";
                 $validate = false;
             }
+            if(isset($_SESSION['users'])) {
+                foreach($_SESSION['users'] as $user) {
+                    if($user['email'] == $email) {
+                        $validate = false;
+                        $emailError = "Email already exists";
+                        $emailErrorClass = " form-control__error";
+                    }
+                }    
+            }
         }
 
         if(empty($_POST['phone'])) {
@@ -95,7 +122,24 @@
         else {
             $securityNumber = filterData($_POST['securityNumber']);
         }
+
+        if($validate) {
+            $user = array(
+                "id" => $_SESSION['id'],
+                "fullName" => $fullName,
+                "username" => $username,
+                "password" => $password,
+                "email" => $email,
+                "phone" => $phone,
+                "dateOfBirth" => $dateOfBirth,
+                "securityNumber" => $securityNumber
+            );
+            $_SESSION['id']++;
+            array_push($_SESSION['users'], $user); 
+        }
+
     }
+
     
     function filterData($data) {
         $data = trim($data);
@@ -116,48 +160,49 @@
     <div class="wrapper">
         <div class="container">
             <h1 class="header">Registration Form</h1>
+            <h2 class="header"><?php if($validate) { echo "User $username was registered"; }  ?></h2>
             <form method="post" action=
             "<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" class="form-wrapper">
 
                 <div class="form-group">
                     
                     <p class="error"><?php echo $fullNameError ?></p>
-                    <input value="<?php echo $fullName; ?>"
+                    <input value="<?php if(!$validate) echo $fullName; else echo ""; ?>"
                      type="text" class="form-control<?php echo $fullNameErrorClass ?>" name="fullName" placeholder="Full Name">
                 </div>
                 <div class="form-group">
                     <p class="error"><?php echo $usernameError ?></p>
-                    <input value="<?php echo $username; ?>"
+                    <input value="<?php if(!$validate) echo $username; else echo ""; ?>"
                      type="text" class="form-control<?php echo $usernameErrorClass ?>" name="username" placeholder="Username">
                 </div>
                 <div class="form-group">
                     <p class="error"><?php echo $passwordError ?></p>
-                    <input value="<?php echo $password; ?>"
+                    <input value="<?php if(!$validate) echo $password; else echo ""; ?>"
                      type="password" class="form-control<?php echo $passwordErrorClass ?>" name="password" placeholder="Password">
                 </div>
                 <div class="form-group">
                     <p class="error"><?php echo $confirmPasswordError ?></p>
-                    <input value="<?php echo $confirmPassword; ?>"
+                    <input value="<?php if(!$validate) echo $confirmPassword; else echo ""; ?>"
                      type="password" class="form-control<?php echo $confirmPasswordErrorClass ?>" name="confirmPassword" placeholder="Confirm Password">
                 </div>
                 <div class="form-group">
                     <p class="error"><?php echo $emailError ?></p>
-                    <input value="<?php echo $email; ?>"
+                    <input value="<?php if(!$validate) echo $email; else echo ""; ?>"
                      type="email" class="form-control<?php echo $emailErrorClass ?>" name="email" placeholder="Email">
                 </div>
                 <div class="form-group">
                     <p class="error"><?php echo $phoneError ?></p>
-                    <input value="<?php echo $phone; ?>"
+                    <input value="<?php if(!$validate) echo $phone; else echo ""; ?>"
                      type="tel" class="form-control<?php echo $phoneErrorClass ?>" name="phone" placeholder="Phone">
                 </div>
                 <div class="form-group">
                     <p class="error"><?php echo $dateOfBirthError ?></p>
-                    <input value="<?php echo $dateOfBirth; ?>"
+                    <input value="<?php if(!$validate) echo $dateOfBirth; else echo ""; ?>"
                      type="text" class="form-control<?php echo $dateOfBirthErrorClass ?>" name="dateOfBirth" placeholder="dd / mm / yyyy">
                 </div>
                 <div class="form-group">
                     <p class="error"><?php echo $securityNumberError ?></p>
-                    <input value="<?php echo $securityNumber; ?>"
+                    <input value="<?php if(!$validate) echo $securityNumber; else echo ""; ?>"
                      type="text" class="form-control<?php echo $securityNumberErrorClass ?>" name="securityNumber" placeholder="Social Security Number">
                 </div>
                 <div class="form-group">
