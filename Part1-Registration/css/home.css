@@ -1,0 +1,21 @@
+/* Resets */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/* Things to be inherited */
+
+html, body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Global variables */
+
+:root {
+    --greenBackground: #78b955;
+    --greenContainer: #699a4b;
+    --greenButton: #77b852;
+    --fontColor: #daebc9;
+}
