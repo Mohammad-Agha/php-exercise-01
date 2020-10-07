@@ -77,6 +77,22 @@ html, body {
     color: var(--fontColor);
 }
 
+.form-control:focus {
+    animation-name: scale;
+    animation-duration: 1s;
+    animation-timing-function: ease-in;
+    animation-fill-mode: forwards;
+}
+
+@keyframes scale {
+    0% {
+        transform: scale(1.1, 1.1);
+    }
+    100%{
+        transform: scale(1.5, 1.5);
+    }
+}
+
 .btn {
     font-size: 1.1rem;
     padding: 0.5rem;
