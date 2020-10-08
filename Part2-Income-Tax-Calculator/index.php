@@ -105,8 +105,8 @@ function filterData($data) {
                         $taxAmountYearly = $totalSalaryYearly * 0.45;
                     }
                     if($salaryCalc > 10000) {
-                        $socialSecurityMonthly = $totalSalaryMonthly * 0.44;
-                        $socialSecurityYearly = $totalSalaryYearly * 0.44;
+                        $socialSecurityMonthly = $totalSalaryMonthly * 0.04;
+                        $socialSecurityYearly = $totalSalaryYearly * 0.04;
                     }
                     else {
                         $socialSecurityMonthly = 0;
