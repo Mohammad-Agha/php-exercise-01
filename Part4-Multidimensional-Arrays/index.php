@@ -13,6 +13,21 @@ $multiArray = array(
     )
 );
 
+echo "Before Sorting: " . PHP_EOL;
+foreach($multiArray as $key => $array) {
+    echo strtoupper($key);
+    echo PHP_EOL;
+    foreach($array as $index => $item) {
+        echo "----> $index = $item";
+        echo PHP_EOL;
+    }
+}
+
+echo PHP_EOL;
+
+krsort($multiArray);
+
+echo "After Sorting: " . PHP_EOL;
 foreach($multiArray as $key => $array) {
     echo strtoupper($key);
     echo PHP_EOL;
