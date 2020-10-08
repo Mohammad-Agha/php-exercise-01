@@ -50,6 +50,14 @@ function filterData($data) {
                 value="<?php if(isset($_POST['calculate'])) echo $salary; ?>"
                 placeholder="Salary in USD" required>
             </div>
+            
+            <div class="allowance-container form-group">
+            <p class="error"><?php echo $taxFreeAllowanceError; ?></p>
+                <span class="currency">$</span>
+                <input type="text"
+                value="<?php if(isset($_POST['calculate'])) echo $taxFreeAllowance;?>"
+                name="taxFreeAllowance" placeholder="Tax Free Allowance in USD" required> 
+            </div>
             <div class="time-container form-group">
                 <label class="monthly">
                     <input type="radio"
@@ -62,13 +70,6 @@ function filterData($data) {
                     name="time" value="yearly"> Yearly
                 </label>
             </div>
-            <div class="allowance-container form-group">
-            <p class="error"><?php echo $taxFreeAllowanceError; ?></p>
-                <span class="currency">$</span>
-                <input type="text"
-                value="<?php if(isset($_POST['calculate'])) echo $taxFreeAllowance;?>"
-                name="taxFreeAllowance" placeholder="Tax Free Allowance in USD" required> 
-            </div>
             <div class="btn-container form-group">
                 <button type="submit" class="btn" name="calculate">Calculate</button>
             </div>
@@ -76,39 +77,54 @@ function filterData($data) {
 
         <?php 
             if(isset($_POST['calculate'])) {
-                if($validate) {
-                    
-                    $totalSalary = $salary;
-                    
-                    if($time == 'monthly') {
-                        $totalSalary *= 12;
+                if($validate) {     
+                    $salaryCalc = $salary;
+                    $taxFreeAllowanceCalc = $taxFreeAllowance;
+                    if($time == "monthly") {
+                        $salaryCalc *= 12;
+                        $taxFreeAllowance *= 12;
                     }
 
-                    $taxAmount = $socialSecurityFee = $salaryAfterTax = 0;
-                    if($salary < 10000) {
-                        $taxAmount = 0;
+                    $totalSalaryMonthly = $salaryCalc / 12;
+                    $totalSalaryYearly = $salaryCalc;
+
+                    if($salaryCalc < 10000) {
+                        $taxAmountMonthly = 0;
+                        $taxAmountYearly = 0;
                     }
-                    else if($salary < 25000) {
-                        $taxAmount = 11;
+                    else if($salaryCalc < 25000){
+                        $taxAmountMonthly = $totalSalaryMonthly * 0.11;
+                        $taxAmountYearly = $totalSalaryYearly * 0.11;
                     }
-                    else if($salary < 50000) {
-                        $taxAmount = 30;
+                    else if($salaryCalc < 50000){
+                        $taxAmountMonthly = $totalSalaryMonthly * 0.3;
+                        $taxAmountYearly = $totalSalaryYearly * 0.3;
                     }
                     else {
-                        $taxAmount = 45;
+                        $taxAmountMonthly = $totalSalaryMonthly * 0.45;
+                        $taxAmountYearly = $totalSalaryYearly * 0.45;
+                    }
+                    if($salaryCalc > 10000) {
+                        $socialSecurityMonthly = $totalSalaryMonthly * 0.44;
+                        $socialSecurityYearly = $totalSalaryYearly * 0.44;
+                    }
+                    else {
+                        $socialSecurityMonthly = 0;
+                        $socialSecurityYearly = 0;
                     }
 
-                    if($salary > 10000) {
-                        $socialSecurityFee = 4;
-                    }
-
-
+                    $salaryAfterTaxMonthly = $totalSalaryMonthly - $taxAmountMonthly - $socialSecurityMonthly + ($taxFreeAllowanceCalc / 12);
+                    $salaryAfterTaxYearly = $totalSalaryYearly - $taxAmountYearly - $socialSecurityYearly + ($taxFreeAllowanceCalc);
                     
 
-
-
-
-                    
+                    $totalSalaryMonthly = number_format((float)$totalSalaryMonthly, 1, '.', '');
+                    $totalSalaryYearly = number_format((float)$totalSalaryYearly, 1, '.', '');
+                    $taxAmountMonthly = number_format((float)$taxAmountMonthly, 1, '.', '');
+                    $taxAmountYearly = number_format((float)$taxAmountYearly, 1, '.', '');
+                    $socialSecurityMonthly = number_format((float)$socialSecurityMonthly, 1, '.', '');
+                    $socialSecurityYearly = number_format((float)$socialSecurityYearly, 1, '.', '');
+                    $salaryAfterTaxMonthly = number_format((float)$salaryAfterTaxMonthly, 1, '.', '');
+                    $salaryAfterTaxYearly = number_format((float)$salaryAfterTaxYearly, 1, '.', '');
                     echo 
                     "
                     <table style='width: 100%; text-align: center;'  border = '1'>
@@ -120,26 +136,26 @@ function filterData($data) {
 
                         <tr>
                             <td>Total Salary</td>
-                            <td></td>
-                            <td></td>
+                            <td>$totalSalaryMonthly$</td>
+                            <td>$totalSalaryYearly$</td>
                         </tr>
 
                         <tr>
                             <td>Tax amount</td>
-                            <td></td>
-                            <td></td>
+                            <td>$taxAmountMonthly$</td>
+                            <td>$taxAmountYearly$</td>
                         </tr>
 
                         <tr>
                             <td>Social security fee</td>
-                            <td></td>
-                            <td></td>
+                            <td>$socialSecurityMonthly$</td>
+                            <td>$socialSecurityYearly$</td>
                         </tr>
                         
                         <tr>
                             <td>Salary after tax</td>
-                            <td></td>
-                            <td></td>
+                            <td>$salaryAfterTaxMonthly$</td>
+                            <td>$salaryAfterTaxYearly$</td>
                         </tr>
                     </table> 
                     ";
