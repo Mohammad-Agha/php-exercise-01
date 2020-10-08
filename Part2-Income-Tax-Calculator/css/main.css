@@ -16,6 +16,7 @@ html, body {
     margin: auto;
     background: rgb(69, 94, 119);
     width: 350px;
+    padding-bottom: 1rem;
 }
 
 .form {
@@ -74,4 +75,8 @@ html, body {
 
 .btn:hover {
     background-color: rgb(84, 125, 167);
+}
+
+.error {
+    color: tomato;
 }
